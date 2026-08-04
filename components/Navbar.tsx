@@ -3,12 +3,12 @@
 const Navbar = () => {
     return (
         <nav>
-            <div>
-                <Link href="/">Store</Link>
-                <div>
-                    <div>
+            <div className="flex justify-between items-center">
+                <Link href="/" className="hidden md:inline-block text-lg font-semibold">Lio's Vintage Cars</Link>
+                <div className="relative max-w-75 md:w-100">
+                    <div className="absolute inset-y-0 inset-s-0 flex items-center ps-3 pointer-events-none">
                         <svg
-                            className=""
+                            className="w-4 h-4 text-black/70"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -23,10 +23,12 @@ const Navbar = () => {
                             />
                         </svg>
                     </div>
-                    <input className="" type="text" placeholder="Search" />
+                    <input className="h-9 relative pl-10 border border-black/70
+                    text-sm rouded-[8px] w-full, py-2 px-3 focus:outline-none focus:shadow-outline
+                    bg-transparent" type="text" placeholder="Search" />
                 </div>
                 <Link href="/add-product">
-                    <button>Add Product</button>
+                    <button className="bg-[#212529] hover:bg-[#343A40] text-white px-3 py-2 rounded-md">Add Product</button>
                 </Link>
             </div>
         </nav>

@@ -1,0 +1,38 @@
+﻿import Image from "next/image";
+import Link from "next/link";
+import {products} from "@/components/ProductStorage";
+
+const ProductList = () =>
+{
+    return(
+        <div className="px-4 md:px12 py-5 md:py-10 flex justify-center items-center"
+        id = "product">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                {
+                    Object.entries(products).map(([id, product]) =>
+                        (
+                            <Link href={"/product/" + id} key={id}>
+                                <Image
+                                    src={product.image}
+                                    alt={product.alt ?? product.name}
+                                    width={1000}
+                                    height={1000}
+                                    className="max-w-68 h-72 object-cover object-center rounded-lg"/>
+                                <div className="mt-4">
+                                    <h2 className="font-semibold text-lg text-black">
+                                        {product.name}
+                                    </h2>
+                                    <p className="font-medium text-sm mt-1 text-black">
+                                        {product.price} Euros
+                                    </p>
+                                </div>
+                            </Link>
+                        )
+                    )
+                }
+            </div>
+        </div>
+    )
+}
+
+export default ProductList;
