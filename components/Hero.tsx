@@ -18,7 +18,7 @@ const Hero = () => {
                 </Link>
             </div>
             <div className="pl-2">
-                <Image src="/Webshopimages/Logo.jpg" alt="img" width={500} height={500}/>
+                <Image src="/WebshopImages/Logo.jpg" alt="img" width={500} height={500}/>
             </div>
         </div>
     );

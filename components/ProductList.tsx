@@ -1,20 +1,37 @@
-﻿import Image from "next/image";
+﻿"use client";
+
+import Image from "next/image";
 import Link from "next/link";
-import {products} from "@/components/ProductStorage";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import ProductModel from "@/app/models/product.model";
+
+interface Product {
+    image: string;
+    _id:string;
+    name: string;
+    price: number;
+}
 
 const ProductList = () =>
 {
+    const [products, setProducts] = useState([]);
+    useEffect(() => {
+        axios.get("/api/get-products/")
+            .then((response) => setProducts(response.data.products));
+    }, []);
+
     return(
         <div className="px-4 md:px12 py-5 md:py-10 flex justify-center items-center"
         id = "product">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
                 {
-                    Object.entries(products).map(([id, product]) =>
+                    products.map((product: Product, index) =>
                         (
-                            <Link href={"/product/" + id} key={id}>
+                            <Link href={`/product/${product._id}`} key={index}>
                                 <Image
                                     src={product.image}
-                                    alt={product.alt ?? product.name}
+                                    alt="img"
                                     width={1000}
                                     height={1000}
                                     className="max-w-68 h-72 object-cover object-center rounded-lg"/>
