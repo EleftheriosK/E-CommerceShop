@@ -1,8 +1,29 @@
 ﻿"use client"
 import {addProduct} from "@/app/utils/addProduct";
+import {StaticImport} from "next/dist/shared/lib/get-img-props";
+import {ChangeEvent, useRef, useState} from "react";
+import Image from "next/image";
 
 const AddForm = () =>
 {
+    const [imageUrl, setImageUrl] = useState<string | StaticImport> ("");
+    const fileInputRef = useRef<HTMLInputElement>(null);
+    const hangleImageChange = (e: ChangeEvent<HTMLInputElement>) =>
+    {
+        const file = e.target.files?.[0];
+        if (file)
+        {
+            const fileSize = file.size;
+            if (Math.round(fileSize / 1024 ) > 1024)
+            {
+                alert("Image greater than 1mb is not allowed");
+            }
+            else
+            {
+                setImageUrl(URL.createObjectURL(file));
+            }
+        }
+    }
     async function clientAddProduct(formData: FormData)
     {
         await addProduct(formData);
@@ -11,14 +32,28 @@ const AddForm = () =>
         <form
             action={clientAddProduct}
             className="w-full max-w-xl mx-auto flex flex-col justify-center items-center space-y-4 mt-3 md:mt-5">
+            {imageUrl ? (
+                <Image
+                    src={imageUrl}
+                    alt="img"
+                    width={1000}
+                    height={1000}
+                    className="max-w-full max-h-72 object-cover object-center rounded-lg"
+                />) : null
+            }
             <div className="flex flex-col w-full text-black">
                 <label className="">Product Image:</label>
                 <input
                     type="file"
                     accept="image/*"
                     name="image"
+                    onChange={hangleImageChange}
                     className="w-full px-3 py-1.5 md:py-2 text-[#252422]
-                    rounded-lg bg-white border border-gray-500"/>
+                        rounded-lg bg-white border border-gray-500
+                        file:border file:border-gray-500 file:rounded-md
+                        file:px-3 file:py-1 file:mr-3
+                        file:bg-gray-100 file:text-[#252422]
+                        file:cursor-pointer hover:file:bg-gray-200"/>
             </div>
             <div className="flex flex-col w-full text-black">
                 <label className="">Name:</label>
