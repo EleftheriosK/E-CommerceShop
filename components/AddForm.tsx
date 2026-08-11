@@ -8,7 +8,7 @@ const AddForm = () =>
 {
     const [imageUrl, setImageUrl] = useState<string | StaticImport> ("");
     const fileInputRef = useRef<HTMLInputElement>(null);
-    const hangleImageChange = (e: ChangeEvent<HTMLInputElement>) =>
+    const handleImageChange = (e: ChangeEvent<HTMLInputElement>) =>
     {
         const file = e.target.files?.[0];
         if (file)
@@ -48,6 +48,8 @@ const AddForm = () =>
                     type="file"
                     accept="image/*"
                     name="image"
+                    ref={fileInputRef}
+                    onChange = {handleImageChange}
                     className="w-full px-3 py-1.5 md:py-2 text-[#252422]
                         rounded-lg bg-white border border-gray-500
                         file:border file:border-gray-500 file:rounded-md
