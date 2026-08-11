@@ -48,8 +48,6 @@ const AddForm = () =>
                     type="file"
                     accept="image/*"
                     name="image"
-                    ref={fileInputRef}
-                    onChange={hangleImageChange}
                     className="w-full px-3 py-1.5 md:py-2 text-[#252422]
                         rounded-lg bg-white border border-gray-500
                         file:border file:border-gray-500 file:rounded-md
