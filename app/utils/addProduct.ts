@@ -50,7 +50,7 @@ export async function addProduct(formData: FormData)
         });
 
         return {
-            success: "Product added successfully.",
+            success: "IProduct added successfully.",
         };
     }catch (error){
         return {

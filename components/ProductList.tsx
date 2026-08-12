@@ -4,14 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import ProductModel from "@/app/models/product.model";
-
-interface Product {
-    image: string;
-    _id:string;
-    name: string;
-    price: number;
-}
+import IProduct from "@/app/Interfaces/IProduct";
 
 const ProductList = () =>
 {
@@ -26,7 +19,7 @@ const ProductList = () =>
         id = "product">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
                 {
-                    products.map((product: Product, index) =>
+                    products.map((product: IProduct, index) =>
                         (
                             <Link href={`/product/${product._id}`} key={index}>
                                 <Image

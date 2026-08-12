@@ -1,10 +1,24 @@
-﻿import Link from "next/link";
+﻿"use client";
+
+import Link from "next/link";
+import {useRouter} from "next/navigation";
+import React, {ChangeEvent} from "react";
 
 const Navbar = () => {
+    const router = useRouter();
+    const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set("searchTerm", e.target.value);
+
+        const searchQuery = urlParams.toString();
+        router.push(`/search?${searchQuery}`);
+    }
     return (
         <nav>
             <div className="flex justify-between items-center">
-                <Link href="/" className="hidden md:inline-block text-lg font-semibold">Lio's Vintage Cars</Link>
+                <Link href="/" className="hidden md:inline-block text-lg font-semibold">
+                    Lio's Vintage Cars
+                </Link>
                 <div className="relative max-w-75 md:w-100">
                     <div className="absolute inset-y-0 inset-s-0 flex items-center ps-3 pointer-events-none">
                         <svg
@@ -23,9 +37,14 @@ const Navbar = () => {
                             />
                         </svg>
                     </div>
-                    <input className="h-9 relative pl-10 border border-black/70
-                    text-sm rouded-[8px] w-full, py-2 px-3 focus:outline-none focus:shadow-outline
-                    bg-transparent" type="text" placeholder="Search" />
+                    <input
+                        className="h-9 relative pl-10 border border-black/70 text-sm rouded-[8px]
+                            w-full, py-2 px-3 focus:outline-none focus:shadow-outline bg-transparent"
+                        id="links"
+                        type="text"
+                        onChange={handleChange}
+                        placeholder="Search"
+                    />
                 </div>
                 <Link href="/add-product">
                     <button className="bg-[#212529] hover:bg-[#343A40] text-white px-3 py-2 rounded-md">Add Product</button>
