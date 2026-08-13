@@ -1,5 +1,5 @@
 ﻿import {connectMongoDB} from "@/app/api/db/connectMongoDB";
-import Product from "@/app/models/product.model";
+import Product from "@/app/api/models/product.model";
 
 export async function GET(req: Request) {
     await connectMongoDB();

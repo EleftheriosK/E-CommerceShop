@@ -1,7 +1,7 @@
 ﻿"use server";
 import cloudinary from "@/app/utils/cloudinary";
 import {connectMongoDB} from "@/app/api/db/connectMongoDB";
-import Product from "@/app/models/product.model";
+import Product from "@/app/api/models/product.model";
 
 export async function addProduct(formData: FormData)
 {
