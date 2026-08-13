@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import IProduct from "@/app/Interfaces/IProduct";
+import IProduct from "@/app/interfaces/IProduct";
 
 const ProductList = () =>
 {

@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {useSearchParams} from "next/navigation"
 import {useEffect, useState, Suspense} from "react";
-import IProduct from "@/app/Interfaces/IProduct";
+import IProduct from "@/app/interfaces/IProduct";
 
 const SearchResults = () => {
     const [products, setProducts] = useState<IProduct[]>([]);

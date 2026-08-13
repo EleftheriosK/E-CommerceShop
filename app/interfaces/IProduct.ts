@@ -3,6 +3,8 @@
     _id:string;
     name: string;
     price: number;
+    link: string;
+    description: string;
 }
 
 export default IProduct;
