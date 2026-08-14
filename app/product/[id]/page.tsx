@@ -19,6 +19,12 @@ const ProductPage = () => {
             .then((response) => setProduct(response.data.product));
     }, [params.id]);
 
+    async function handleDelete() {
+        const response = await axios.delete(`/api/product/${params.id}`);
+        alert(response.data.message);
+        router.push("/");
+    }
+
     if (!product) {
         return <p>Loading...</p>;
     }
@@ -60,7 +66,10 @@ const ProductPage = () => {
                                                     Update
                                                 </p>
                                             </Link>
-                                            <p className="text-red-500 cursor-pointer">
+                                            <p
+                                                onClick={handleDelete}
+                                                className="text-red-500 cursor-pointer"
+                                            >
                                                 Delete
                                             </p>
                                         </div>
